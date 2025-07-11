@@ -8,35 +8,48 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Crypto luxury theme - Black & Gold */
+    --background: 0 0% 3%;
+    --foreground: 45 100% 80%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 0 0% 6%;
+    --card-foreground: 45 100% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 4%;
+    --popover-foreground: 45 100% 85%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 45 100% 55%;
+    --primary-foreground: 0 0% 0%;
+    --primary-glow: 45 100% 65%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 45 100% 80%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 0 0% 8%;
+    --muted-foreground: 45 20% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 45 100% 45%;
+    --accent-foreground: 0 0% 0%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 0 0% 15%;
+    --input: 0 0% 10%;
+    --ring: 45 100% 55%;
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(45 100% 55%), hsl(45 100% 65%));
+    --gradient-background: linear-gradient(180deg, hsl(0 0% 3%), hsl(0 0% 6%));
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 6%), hsl(0 0% 10%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 100% 45%), hsl(45 100% 75%));
+    
+    /* Shadows */
+    --shadow-gold: 0 0 30px hsl(45 100% 55% / 0.3);
+    --shadow-glow: 0 0 60px hsl(45 100% 65% / 0.4);
+    --shadow-elegant: 0 10px 40px hsl(0 0% 0% / 0.8);
+
+    --radius: 0.75rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +113,58 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
+    background: var(--gradient-background);
+  }
+}
+
+@layer components {
+  .gradient-text {
+    background: var(--gradient-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .glow-effect {
+    box-shadow: var(--shadow-gold);
+  }
+  
+  .card-elegant {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-elegant);
+    border: 1px solid hsl(var(--border));
+  }
+  
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px hsl(45 100% 55% / 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 40px hsl(45 100% 55% / 0.6);
   }
 }
