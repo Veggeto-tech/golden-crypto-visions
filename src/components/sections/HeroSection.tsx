@@ -10,115 +10,275 @@ export function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20">
-      {/* Animated Background Elements */}
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
+      {/* Animated Background Elements - Más elaborados */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* Elementos de fondo múltiples y más grandes */}
         <motion.div
           animate={{ 
             rotate: 360,
-            scale: [1, 1.2, 1],
+            scale: [1, 1.5, 1],
+            x: [0, 100, 0],
+            y: [0, -50, 0]
           }}
           transition={{ 
-            duration: 20, 
+            duration: 30, 
             repeat: Infinity, 
-            ease: "linear" 
+            ease: "easeInOut" 
           }}
-          className="absolute top-1/4 right-1/4 w-64 h-64 bg-gradient-primary rounded-full opacity-10 blur-xl"
+          className="absolute top-10 right-10 w-96 h-96 bg-gradient-primary rounded-full opacity-20 blur-3xl"
         />
         <motion.div
           animate={{ 
             rotate: -360,
-            scale: [1.2, 1, 1.2],
+            scale: [1.5, 1, 1.5],
+            x: [0, -150, 0],
+            y: [0, 100, 0]
+          }}
+          transition={{ 
+            duration: 35, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+          className="absolute bottom-10 left-10 w-[500px] h-[500px] bg-gradient-gold rounded-full opacity-15 blur-3xl"
+        />
+        
+        {/* Elementos adicionales flotantes */}
+        <motion.div
+          animate={{ 
+            rotate: 180,
+            scale: [0.8, 1.3, 0.8],
+            x: [0, -100, 0],
           }}
           transition={{ 
             duration: 25, 
             repeat: Infinity, 
             ease: "linear" 
           }}
-          className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-gradient-gold rounded-full opacity-5 blur-2xl"
+          className="absolute top-1/3 left-1/3 w-72 h-72 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-2xl"
         />
+        
+        <motion.div
+          animate={{ 
+            rotate: -180,
+            scale: [1.2, 0.7, 1.2],
+            y: [0, -200, 0],
+          }}
+          transition={{ 
+            duration: 28, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+          className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-l from-green-400/15 to-teal-500/15 rounded-full blur-2xl"
+        />
+        
+        {/* Partículas flotantes CSS */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <motion.div
+            key={i}
+            animate={{
+              y: [0, -100, 0],
+              x: [0, Math.sin(i) * 50, 0],
+              scale: [0.5, 1, 0.5],
+              opacity: [0.2, 0.8, 0.2]
+            }}
+            transition={{
+              duration: 6 + i * 0.5,
+              repeat: Infinity,
+              delay: i * 0.3,
+              ease: "easeInOut"
+            }}
+            className={`absolute w-2 h-2 rounded-full ${
+              i % 3 === 0 ? 'bg-yellow-400' : 
+              i % 3 === 1 ? 'bg-blue-400' : 'bg-green-400'
+            } opacity-60 blur-sm`}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+          />
+        ))}
       </div>
 
       <div className="relative z-10 container mx-auto text-center">
-        {/* Main Heading */}
+        {/* Main Heading - Más grande y dramático */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="mb-8"
+          transition={{ duration: 1.2 }}
+          className="mb-12"
         >
           <motion.h1 
-            className="text-6xl md:text-8xl font-bold mb-6 leading-tight"
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1 }}
+            className="text-7xl md:text-9xl lg:text-[12rem] font-black mb-8 leading-none tracking-tight"
+            initial={{ opacity: 0, scale: 0.5, rotateX: 90 }}
+            animate={{ opacity: 1, scale: 1, rotateX: 0 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
           >
-            <span className="gradient-text">Future of</span>
-            <br />
-            <span className="text-foreground">Crypto Trading</span>
+            <motion.span 
+              className="gradient-text block"
+              animate={{ 
+                backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+              }}
+              transition={{ 
+                duration: 4, 
+                repeat: Infinity,
+                ease: "linear"
+              }}
+            >
+              Future of
+            </motion.span>
+            <motion.span 
+              className="text-foreground block mt-4"
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+            >
+              Crypto Trading
+            </motion.span>
           </motion.h1>
           
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ 
+              opacity: 1, 
+              y: 0,
+              scale: [1, 1.02, 1]
+            }}
+            transition={{ 
+              delay: 0.8, 
+              duration: 1,
+              scale: {
+                duration: 3, 
+                repeat: Infinity,
+                ease: "easeInOut"
+              }
+            }}
+            className="text-2xl md:text-3xl lg:text-4xl text-muted-foreground max-w-5xl mx-auto mb-16 leading-relaxed"
           >
-            Experience the most advanced cryptocurrency trading platform with 
+            Experience the most <motion.span 
+              className="gradient-text font-semibold"
+              animate={{ opacity: [0.7, 1, 0.7] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              advanced cryptocurrency
+            </motion.span> trading platform with 
             cutting-edge 3D analytics, AI-powered insights, and institutional-grade security.
           </motion.p>
         </motion.div>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - Más grandes y espectaculares */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16"
+          transition={{ delay: 1.2, duration: 1 }}
+          className="flex flex-col sm:flex-row gap-8 justify-center items-center mb-20"
         >
-          <Button 
-            size="lg" 
-            className="bg-gradient-primary hover:shadow-glow transition-all duration-300 text-lg px-8 py-4 group"
+          <motion.div
+            whileHover={{ scale: 1.1, rotateY: 5 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            Start Trading Now
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-          </Button>
+            <Button 
+              size="lg" 
+              className="bg-gradient-primary hover:shadow-glow transition-all duration-500 text-xl px-12 py-6 group relative overflow-hidden"
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              />
+              <span className="relative z-10">Start Trading Now</span>
+              <ArrowRight className="ml-3 group-hover:translate-x-2 transition-transform duration-300 relative z-10" />
+            </Button>
+          </motion.div>
           
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 text-lg px-8 py-4"
+          <motion.div
+            whileHover={{ scale: 1.05, rotateY: -5 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
-            <Play className="mr-2" />
-            Watch Demo
-          </Button>
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-500 text-xl px-12 py-6 backdrop-blur-md bg-background/20"
+            >
+              <Play className="mr-3" />
+              Watch Demo
+            </Button>
+          </motion.div>
         </motion.div>
 
-        {/* Stats */}
+        {/* Stats - Más grandes y animadas */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto"
+          transition={{ delay: 1.5, duration: 1 }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-6xl mx-auto"
         >
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1 + index * 0.2, duration: 0.5 }}
-              whileHover={{ scale: 1.05 }}
-              className="card-elegant p-6 text-center group cursor-pointer"
+              initial={{ opacity: 0, scale: 0.5, rotateY: 180 }}
+              animate={{ opacity: 1, scale: 1, rotateY: 0 }}
+              transition={{ 
+                delay: 1.5 + index * 0.3, 
+                duration: 0.8,
+                type: "spring",
+                stiffness: 100
+              }}
+              whileHover={{ 
+                scale: 1.1, 
+                rotateY: 10,
+                z: 50
+              }}
+              className="card-elegant p-8 text-center group cursor-pointer relative overflow-hidden"
             >
-              <div className="flex justify-center mb-4">
-                <div className="p-3 bg-gradient-primary rounded-full group-hover:shadow-glow transition-all duration-300">
-                  <stat.icon className="w-6 h-6 text-primary-foreground" />
-                </div>
+              {/* Efecto de brillo animado */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/10 to-transparent"
+                animate={{ x: ['-100%', '100%'] }}
+                transition={{ 
+                  duration: 3, 
+                  repeat: Infinity, 
+                  ease: "linear",
+                  delay: index * 0.5
+                }}
+              />
+              
+              <div className="flex justify-center mb-6 relative z-10">
+                <motion.div 
+                  className="p-4 bg-gradient-primary rounded-full group-hover:shadow-glow transition-all duration-500"
+                  animate={{ 
+                    rotate: [0, 360],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{ 
+                    duration: 4, 
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: index * 0.8
+                  }}
+                >
+                  <stat.icon className="w-8 h-8 text-primary-foreground" />
+                </motion.div>
               </div>
-              <div className="text-3xl font-bold gradient-text mb-2">
+              
+              <motion.div 
+                className="text-4xl md:text-5xl font-black gradient-text mb-3 relative z-10"
+                animate={{ 
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: index * 0.3
+                }}
+              >
                 {stat.value}
-              </div>
-              <div className="text-muted-foreground">
+              </motion.div>
+              
+              <div className="text-lg text-muted-foreground font-medium relative z-10">
                 {stat.label}
               </div>
             </motion.div>
