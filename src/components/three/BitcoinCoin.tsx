@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Mesh, MathUtils } from 'three';
-import { Text3D, useMatcapTexture } from '@react-three/drei';
+import { useMatcapTexture } from '@react-three/drei';
 
 interface BitcoinCoinProps {
   position: [number, number, number];
@@ -35,16 +35,23 @@ export function BitcoinCoin({ position, scrollY }: BitcoinCoinProps) {
       <cylinderGeometry args={[1, 1, 0.1, 32]} />
       <meshMatcapMaterial matcap={matcap} />
       
-      {/* Símbolo Bitcoin */}
-      <Text3D
-        font="/fonts/helvetiker_regular.typeface.json"
-        size={0.3}
-        height={0.02}
-        position={[0, 0, 0.06]}
-      >
-        ₿
-        <meshMatcapMaterial matcap={matcap} />
-      </Text3D>
+      {/* Símbolo Bitcoin - usando geometría simple */}
+      <mesh position={[0, 0, 0.06]}>
+        <boxGeometry args={[0.1, 0.6, 0.02]} />
+        <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={0.3} />
+      </mesh>
+      <mesh position={[0.15, 0.2, 0.06]}>
+        <boxGeometry args={[0.3, 0.08, 0.02]} />
+        <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={0.3} />
+      </mesh>
+      <mesh position={[0.15, -0.2, 0.06]}>
+        <boxGeometry args={[0.3, 0.08, 0.02]} />
+        <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={0.3} />
+      </mesh>
+      <mesh position={[0.15, 0, 0.06]}>
+        <boxGeometry args={[0.25, 0.08, 0.02]} />
+        <meshStandardMaterial color="#FFD700" emissive="#FFD700" emissiveIntensity={0.3} />
+      </mesh>
       
       {/* Anillo dorado */}
       <mesh position={[0, 0, 0]}>
